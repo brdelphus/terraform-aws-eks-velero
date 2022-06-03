@@ -71,6 +71,16 @@ resource "helm_release" "velero" {
     name  = "initContainers[0].volumeMounts[0].name"
     value = "plugins"
   }
+  
+  set {
+    name  = "metrics.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "metrics.serviceMonitor.enabled"
+    value = "true"
+  }
 
   values = [
     yamlencode(var.settings)
